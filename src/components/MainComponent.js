@@ -18,6 +18,7 @@ const mapStateToProps = state => {
         promotions: state.promotions
     }
 }
+
 class Main extends Component {
 
 
