@@ -35,9 +35,6 @@ function Home(props) {
                         errMess={props.promotionErrMess}
                     />
                 <div className="col-md m-1">
-                    <RenderCard item={props.promotion} />
-                </div>
-                <div className="col-md m-1">
                     <RenderCard item={props.partner} />
                 </div>
             </div>
