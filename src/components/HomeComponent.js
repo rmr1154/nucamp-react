@@ -2,11 +2,12 @@ import React from 'react';
 import { Card, CardImg, CardText, CardBody, CardTitle } from 'reactstrap';
 import { Loading } from './LoadingComponent';
 import { baseUrl } from '../shared/baseUrl';
+import { FadeTransform } from 'react-animation-components';
 
-function RenderCard({item, isLoading, errMess}) {
+function RenderCard({ item, isLoading, errMess }) {
     if (isLoading) {
         return (
-             <Loading />
+            <Loading />
         );
     }
     if (errMess) {
@@ -15,13 +16,19 @@ function RenderCard({item, isLoading, errMess}) {
         );
     }
     return (
-        <Card>
-            <CardImg src={baseUrl + item.image} alt={item.name} />
-            <CardBody>
-            <CardTitle>{item.name}</CardTitle>
-            <CardText>{item.description}</CardText>
-            </CardBody>
-        </Card>
+        <FadeTransform
+            in
+            transformProps={{
+                exitTransform: 'scale(0.5) translateY(50%)'
+            }}>
+            <Card>
+                <CardImg src={baseUrl + item.image} alt={item.name} />
+                <CardBody>
+                    <CardTitle>{item.name}</CardTitle>
+                    <CardText>{item.description}</CardText>
+                </CardBody>
+            </Card>
+        </FadeTransform>
     );
 }
 
@@ -29,17 +36,32 @@ function Home(props) {
     return (
         <div className="container">
             <div className="row">
-            <RenderCard
+                <div className="col-md m-1">
+                    <RenderCard
+                        item={props.campsite}
+                        isLoading={props.promotionLoading}
+                        errMess={props.promotionErrMess}
+                    />
+                </div>
+                <div className="col-md m-1">
+                <RenderCard
                         item={props.promotion}
                         isLoading={props.promotionLoading}
                         errMess={props.promotionErrMess}
                     />
-                <div className="col-md m-1">
-                    <RenderCard item={props.partner} />
                 </div>
+                <div className="col-md m-1">
+                <RenderCard
+                        item={props.partner}
+                        isLoading={props.promotionLoading}
+                        errMess={props.promotionErrMess}
+                    />
+                </div>
+
             </div>
         </div>
     );
 }
 
 export default Home;
+
