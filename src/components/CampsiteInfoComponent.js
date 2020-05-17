@@ -33,7 +33,7 @@ class CommentForm extends Component {
         console.log('Current state is: ' + JSON.stringify(values));
         alert('Current state is: ' + JSON.stringify(values));
         this.toggleModal();
-        this.props.postComment(this.props.campsiteId, values.rating, values.author, values.text);
+        this.props.postComment(this.props.campsiteId, values.rating, values.author, values.comment);
     }
 
     render() {
@@ -44,7 +44,7 @@ class CommentForm extends Component {
                 <ModalBody>
                     <LocalForm onSubmit={values => this.handleSubmit(values)}>
                         <div className="form-group">
-
+                        <Label htmlFor="rating" md={10}>Rating</Label>
                             <Control.select model=".rating " name="rating"
                                 className="form-control">
                                 <option>1</option>
